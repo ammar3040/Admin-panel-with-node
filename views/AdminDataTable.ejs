@@ -1,0 +1,87 @@
+<%- include("header") %>
+
+
+        <div class="container">
+          <div class="page-inner">
+            <div class="page-header">
+              <h3 class="fw-bold mb-3">DataTables.Net</h3>
+              <ul class="breadcrumbs mb-3">
+                <li class="nav-home">
+                  <a href="#">
+                    <i class="icon-home"></i>
+                  </a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Tables</a>
+                </li>
+                <li class="separator">
+                  <i class="icon-arrow-right"></i>
+                </li>
+                <li class="nav-item">
+                  <a href="#">Datatables</a>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+          
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                   <input type="search" name="" id="" onchange="  ">
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      
+                     <table id="multi-filter-select"
+                      class="display table table-striped table-hover" >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Gender</th>
+      <th>Hobby</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (allAdminData && allAdminData.length > 0) { %>
+      <% allAdminData.forEach((admin, index) => { %>
+        <tr>
+          <td><%= admin.name %></td>
+          <td><%= admin.email %></td>
+          <td><%= admin.mobile %></td>
+          <td><%= admin.gender %></td>
+          <td><%= admin.hobby.join(", ") %></td>
+          <td><img src="/<%= admin.image %>" alt="admin" width="50"></td>
+          <td>
+
+            <a href="/admin/delete/?adminId=<%= admin._id %>" style="text-decoration: none; color: black; margin-right: 20px;"><i class="fa fa-trash"></i></a> 
+          
+            <a href="/admin/Edit/?adminId=<%= admin._id %>"><i class="fa fa-pen"></i></a>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="6">No data found</td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+           
+            </div>
+          </div>
+        </div>
+
+<%- include("footer") %>

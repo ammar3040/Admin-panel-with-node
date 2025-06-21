@@ -1,0 +1,230 @@
+<%- include("header") %>
+
+<div class="container">
+  <div class="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Registration Form</div>
+          </div>
+          <form action="/admin/insertData" method="post" enctype="multipart/form-data">
+            <div class="card-body"> 
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- Personal Information -->
+                  <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstname"
+                      name="firstname"
+                      placeholder="Enter First Name"
+                      required
+                    />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastname"
+                      name="lastname"
+                      placeholder="Enter Last Name"
+                      required
+                    />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Enter Email"
+                      required
+                    />
+                    <small id="emailHelp" class="form-text text-muted"
+                      >We'll never share your email with anyone else.</small
+                    >
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      placeholder="Enter Password"
+                      required
+                    />
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="mobile"
+                      name="mobile"
+                      placeholder="Enter Mobile Number"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <!-- Additional Information -->
+                  <div class="form-group">
+                    <label>Gender</label><br />
+                    <div class="d-flex">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="male"
+                          value="male"
+                          checked
+                        />
+                        <label
+                          class="form-check-label"
+                          for="male"
+                        >
+                          Male
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="female"
+                          value="female"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="female"
+                        >
+                          Female
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="other"
+                          value="other"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="other"
+                        >
+                          Other
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <select
+                      class="form-select"
+                      id="city"
+                      name="city"
+                      required
+                    >
+                      <option value="">Select City</option>
+                      <option value="bangalore">Bangalore</option>
+                      <option value="mumbai">Mumbai</option>
+                      <option value="delhi">Delhi</option>
+                      <option value="hyderabad">Hyderabad</option>
+                      <option value="chennai">Chennai</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>Hobbies</label>
+                    <div class="selectgroup selectgroup-pills">
+                      <label class="selectgroup-item">
+                        <input
+                          type="checkbox"
+                          name="hobby"
+                          value="reading"
+                          class="selectgroup-input"
+                        />
+                        <span class="selectgroup-button">Reading</span>
+                      </label>
+                      <label class="selectgroup-item">
+                        <input
+                          type="checkbox"
+                          name="hobby"
+                          value="sports"
+                          class="selectgroup-input"
+                        />
+                        <span class="selectgroup-button">Sports</span>
+                      </label>
+                      <label class="selectgroup-item">
+                        <input
+                          type="checkbox"
+                          name="hobby"
+                          value="music"
+                          class="selectgroup-input"
+                        />
+                        <span class="selectgroup-button">Music</span>
+                      </label>
+                      <label class="selectgroup-item">
+                        <input
+                          type="checkbox"
+                          name="hobby"
+                          value="travel"
+                          class="selectgroup-input"
+                        />
+                        <span class="selectgroup-button">Travel</span>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="profileImage">Profile Image</label>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="profileImage"
+                      name="profileImage"
+                    />
+                    <small class="form-text text-muted">Upload your profile picture (JPEG/PNG)</small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea 
+                      class="form-control" 
+                      id="bio" 
+                      name="bio" 
+                      rows="3" 
+                      placeholder="Tell us about yourself"
+                    ></textarea>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="reset" class="btn btn-danger">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("footer") %>
