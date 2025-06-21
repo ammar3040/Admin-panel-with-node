@@ -1,87 +1,282 @@
 <%- include("header") %>
 
-
-        <div class="container">
-          <div class="page-inner">
-            <div class="page-header">
-              <h3 class="fw-bold mb-3">DataTables.Net</h3>
-              <ul class="breadcrumbs mb-3">
-                <li class="nav-home">
-                  <a href="#">
-                    <i class="icon-home"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Tables</a>
-                </li>
-                <li class="separator">
-                  <i class="icon-arrow-right"></i>
-                </li>
-                <li class="nav-item">
-                  <a href="#">Datatables</a>
-                </li>
-              </ul>
-            </div>
+<div class="container">
+  <div class="page-inner">
+    <div class="page-header">
+      <h3 class="fw-bold mb-3">DataTables.Net</h3>
+      <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+          <a href="#">
+            <i class="icon-home"></i>
+          </a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          <a href="#">Tables</a>
+        </li>
+        <li class="separator">
+          <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+          <a href="#">Datatables</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
             <div class="row">
-          
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                   <input type="search" name="" id="" onchange="  ">
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      
-                     <table id="multi-filter-select"
-                      class="display table table-striped table-hover" >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>Gender</th>
-      <th>Hobby</th>
-      <th>Image</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if (allAdminData && allAdminData.length > 0) { %>
-      <% allAdminData.forEach((admin, index) => { %>
-        <tr>
-          <td><%= admin.name %></td>
-          <td><%= admin.email %></td>
-          <td><%= admin.mobile %></td>
-          <td><%= admin.gender %></td>
-          <td><%= admin.hobby.join(", ") %></td>
-          <td><img src="/<%= admin.image %>" alt="admin" width="50"></td>
-          <td>
-
-            <a href="/admin/delete/?adminId=<%= admin._id %>" style="text-decoration: none; color: black; margin-right: 20px;"><i class="fa fa-trash"></i></a> 
-          
-            <a href="/admin/Edit/?adminId=<%= admin._id %>"><i class="fa fa-pen"></i></a>
-          </td>
-        </tr>
-      <% }) %>
-    <% } else { %>
-      <tr>
-        <td colspan="6">No data found</td>
-      </tr>
-    <% } %>
-  </tbody>
-</table>
-
-                    </div>
-                  </div>
+              <div class="col-md-6">
+                <div class="dataTables_length" id="multi-filter-select_length">
+                  <label>Show 
+                    <select name="multi-filter-select_length" aria-controls="multi-filter-select" class="form-control form-control-sm">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select> entries
+                  </label>
                 </div>
               </div>
-
-           
+              <div class="col-md-6">
+                <div id="multi-filter-select_filter" class="dataTables_filter">
+                  <label>Search:
+                    <input type="search" class="form-control form-control-sm" placeholder="Search by name, email, mobile..." aria-controls="multi-filter-select">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="multi-filter-select" class="display table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th data-sortable="true" data-sort-direction="asc">Name <i class="fa fa-sort"></i></th>
+                    <th data-sortable="true" data-sort-direction="asc">Email <i class="fa fa-sort"></i></th>
+                    <th data-sortable="true" data-sort-direction="asc">Mobile <i class="fa fa-sort"></i></th>
+                    <th>Gender</th>
+                    <th>Hobby</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (allAdminData && allAdminData.length > 0) { %>
+                    <% allAdminData.forEach((admin, index) => { %>
+                      <tr>
+                        <td><%= admin.name %></td>
+                        <td><%= admin.email %></td>
+                        <td><%= admin.mobile %></td>
+                        <td><%= admin.gender %></td>
+                        <td><%= admin.hobby.join(", ") %></td>
+                        <td><img src="/<%= admin.image %>" alt="admin" width="50"></td>
+                        <td>
+                          <a href="/admin/delete/?adminId=<%= admin._id %>" style="text-decoration: none; color: black; margin-right: 20px;"><i class="fa fa-trash"></i></a> 
+                          <a href="/admin/Edit/?adminId=<%= admin._id %>"><i class="fa fa-pen"></i></a>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr>
+                      <td colspan="7">No data found</td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="multi-filter-select_info" role="status" aria-live="polite">
+                  Showing 1 to 10 of <%= allAdminData ? allAdminData.length : 0 %> entries
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="multi-filter-select_paginate">
+                  <ul class="pagination">
+                    <li class="paginate_button page-item previous disabled" id="multi-filter-select_previous">
+                      <a href="#" aria-controls="multi-filter-select" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a href="#" aria-controls="multi-filter-select" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                    </li>
+                    <li class="paginate_button page-item">
+                      <a href="#" aria-controls="multi-filter-select" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                    </li>
+                    <li class="paginate_button page-item next" id="multi-filter-select_next">
+                      <a href="#" aria-controls="multi-filter-select" data-dt-idx="3" tabindex="0" class="page-link">Next</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+ 
+    let currentPage = 1;
+    let rowsPerPage = 10;
+    let sortColumn = 0;
+    let sortDirection = 'asc';
+    let allData = [];
+ 
+    const table = document.getElementById('multi-filter-select');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const pageInfo = document.getElementById('multi-filter-select_info');
+    const pagination = document.getElementById('multi-filter-select_paginate');
+   
+    allData = rows.map(row => {
+      const cells = row.querySelectorAll('td');
+      return {
+        name: cells[0].textContent,
+        email: cells[1].textContent,
+        mobile: cells[2].textContent,
+        gender: cells[3].textContent,
+        hobby: cells[4].textContent,
+        image: cells[5].innerHTML,
+        actions: cells[6].innerHTML,
+        element: row
+      };
+    });
+    
+    function updateTable() {
+      
+      while (tbody.firstChild) {
+        tbody.removeChild(tbody.firstChild);
+      }
+      
+      let filteredData = [...allData];
+      
+    
+      const searchInput = document.querySelector('#multi-filter-select_filter input');
+      const searchTerm = searchInput.value.toLowerCase();
+      if (searchTerm) {
+        filteredData = filteredData.filter(item => 
+          item.name.toLowerCase().includes(searchTerm) || 
+          item.email.toLowerCase().includes(searchTerm) ||
+          item.mobile.toLowerCase().includes(searchTerm)
+        );
+      }
+      filteredData.sort((a, b) => {
+        const aValue = getSortValue(a, sortColumn);
+        const bValue = getSortValue(b, sortColumn);
+        
+        if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+        if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+        return 0;
+      });
+      
+      const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+      const startIndex = (currentPage - 1) * rowsPerPage;
+      const endIndex = Math.min(startIndex + rowsPerPage, filteredData.length);
+      const paginatedData = filteredData.slice(startIndex, endIndex);
+      
+      paginatedData.forEach(item => {
+        tbody.appendChild(item.element);
+      });
+
+      pageInfo.textContent = `Showing ${startIndex + 1} to ${endIndex} of ${filteredData.length} entries`;
+
+      updatePagination(totalPages);
+    }
+    
+    function getSortValue(item, columnIndex) {
+      switch(columnIndex) {
+        case 0: return item.name;
+        case 1: return item.email;
+        case 2: return item.mobile;
+        default: return item.name;
+      }
+    }
+    
+    function updatePagination(totalPages) {
+      const paginationList = pagination.querySelector('.pagination');
+      paginationList.innerHTML = '';
+      
+      const prevButton = document.createElement('li');
+      prevButton.className = `paginate_button page-item previous ${currentPage === 1 ? 'disabled' : ''}`;
+      prevButton.innerHTML = `<a href="#" aria-controls="multi-filter-select" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>`;
+      prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage > 1) {
+          currentPage--;
+          updateTable();
+        }
+      });
+      paginationList.appendChild(prevButton);
+      
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('li');
+        pageButton.className = `paginate_button page-item ${i === currentPage ? 'active' : ''}`;
+        pageButton.innerHTML = `<a href="#" aria-controls="multi-filter-select" data-dt-idx="${i}" tabindex="0" class="page-link">${i}</a>`;
+        pageButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentPage = i;
+          updateTable();
+        });
+        paginationList.appendChild(pageButton);
+      }
+      
+      const nextButton = document.createElement('li');
+      nextButton.className = `paginate_button page-item next ${currentPage === totalPages ? 'disabled' : ''}`;
+      nextButton.innerHTML = `<a href="#" aria-controls="multi-filter-select" data-dt-idx="${totalPages + 1}" tabindex="0" class="page-link">Next</a>`;
+      nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateTable();
+        }
+      });
+      paginationList.appendChild(nextButton);
+    }
+   
+    document.querySelector('#multi-filter-select_filter input').addEventListener('input', () => {
+      currentPage = 1;
+      updateTable();
+    });
+    
+    document.querySelector('#multi-filter-select_length select').addEventListener('change', (e) => {
+      rowsPerPage = parseInt(e.target.value);
+      currentPage = 1;
+      updateTable();
+    });
+    
+    const headers = table.querySelectorAll('thead th[data-sortable="true"]');
+    headers.forEach((header, index) => {
+      header.style.cursor = 'pointer';
+      header.addEventListener('click', () => {
+      
+        if (sortColumn === index) {
+          sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortColumn = index;
+          sortDirection = 'asc';
+        }
+        
+        headers.forEach(h => {
+          const icon = h.querySelector('i');
+          if (icon) icon.className = 'fa fa-sort';
+        });
+        
+        const icon = header.querySelector('i');
+        if (icon) icon.className = `fa fa-sort-${sortDirection === 'asc' ? 'up' : 'down'}`;
+        
+        updateTable();
+      });
+    });
+   
+    updateTable();
+  });
+</script>
 
 <%- include("footer") %>
